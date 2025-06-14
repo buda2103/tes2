@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reloj Mundial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .clock {
+            margin: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+
+        .city {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Reloj Mundial</h1>
+
+    <div class="clock">
+        <div class="city">Ciudad de México</div>
+        <div id="cdmx">--:--:--</div>
+    </div>
+
+    <div class="clock">
+        <div class="city">Nueva York</div>
+        <div id="ny">--:--:--</div>
+    </div>
+
+    <div class="clock">
+        <div class="city">Londres</div>
+        <div id="london">--:--:--</div>
+    </div>
+
+    <div class="clock">
+        <div class="city">Tokio</div>
+        <div id="tokyo">--:--:--</div>
+    </div>
+
+    <script>
+        function actualizarHora() {
+            const opciones = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+            const ahora = new Date();
+
+            document.getElementById("cdmx").textContent = ahora.toLocaleTimeString("es-MX", { ...opciones, timeZone: "America/Mexico_City" });
+            document.getElementById("ny").textContent = ahora.toLocaleTimeString("en-US", { ...opciones, timeZone: "America/New_York" });
+            document.getElementById("london").textContent = ahora.toLocaleTimeString("en-GB", { ...opciones, timeZone: "Europe/London" });
+            document.getElementById("tokyo").textContent = ahora.toLocaleTimeString("ja-JP", { ...opciones, timeZone: "Asia/Tokyo" });
+        }
+
+        setInterval(actualizarHora, 1000);
+        actualizarHora(); // ejecutar al cargar
+    </script>
+</body>
+
+</html>
